@@ -4,24 +4,27 @@ function nasdaqStatus(currentDateISOString) {
 
     var now = moment(currentDateISOString).tz('America/New_York');
 
-    var closestBusinessDay = moment(now);
-    if (!isWorkingDay(now)) 
-        return {currentStatus: 'CLOSED', nextStatus: 'OPEN'};
+    if (!isWorkingDay(now)) {
+        var nextOpenDate = nextWorkingDay(now).hour(9).minute(30).second(0);
+        var timeToWait = moment.duration(nextOpenDate.diff(now, 'seconds'), 'seconds');
+        return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(timeToWait)};
+    }
 
     var openDate = moment(now).hour(9).minute(30).second(0);
-
-    var closeDate = moment(now).hour(16).minute(0).second(0);
-
-    if (now.isBefore(openDate)) 
-        return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(moment.duration(1, 'minutes'))};
+    if (now.isBefore(openDate)) {
+        var timeToWait = moment.duration(openDate.diff(now, 'seconds'), 'seconds');
+        return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(timeToWait)};
+    } 
     
+    var closeDate = moment(now).hour(16).minute(0).second(0);
     if (now.isAfter(closeDate)) {
         var nextOpenDate = nextWorkingDay(now).hour(9).minute(30).second(0);
         var timeToWait = moment.duration(nextOpenDate.diff(now, 'seconds'), 'seconds');
         return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(timeToWait)};
     }
 
-    return {currentStatus: 'OPEN', nextStatus: 'CLOSED'};
+    var timeToWait = moment.duration(closeDate.diff(now, 'seconds'), 'seconds');
+    return {currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: durationToString(timeToWait)};
 }
 
 function isWorkingDay(now) {
@@ -38,36 +41,14 @@ function nextWorkingDay(now) {
 }
 
 function durationToString(duration) {
-    return duration.hours() + ' hours ' + duration.minutes() + ' minutes ' + duration.seconds() + ' seconds';
-}
-
-//set the date we're counting down to
-var utcToEsternTimeOffsetHours = 4;
-var targetDate = new Date(Date.UTC(2014, 10-1, 21, 09 + utcToEsternTimeOffsetHours, 30)).getTime();
-
-function countdownMessage(now) {
-    // find the amount of "seconds" between now and target
-    var secondsLeft = (targetDate - now) / 1000;
- 
-    // do some time calculations
-    var days = parseInt(secondsLeft / 86400);
-    secondsLeft = secondsLeft % 86400;
-     
-    var hours = parseInt(secondsLeft / 3600);
-    secondsLeft = secondsLeft % 3600;
-     
-    var minutes = parseInt(secondsLeft / 60);
-    var seconds = parseInt(secondsLeft % 60);
-     
-    return days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    return duration.days() + 'd ' + duration.hours() + 'h ' + duration.minutes() + 'm ' + duration.seconds() + 's';
 }
 
 function myTimer() {
     var status = nasdaqStatus();
     $('#status').html(status.currentStatus);
     $('#nextStatus').html(status.nextStatus);
-    var now = new Date().getTime();
-    $('#timeUntilNextStatus').html(countdownMessage(now));
+    $('#timeUntilNextStatus').html(status.timeUntilNextStatus);
 }
 
 setInterval(myTimer, 1000);
