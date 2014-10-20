@@ -6,19 +6,19 @@ function nasdaqStatus(currentDateISOString) {
 
     var closestBusinessDay = moment(now);
     if (!isWorkingDay(now)) 
-        return {currentStatus: 'CLOSED'};
+        return {currentStatus: 'CLOSED', nextStatus: 'OPEN'};
 
     var openDate = moment(now).hour(9).minute(30).second(0);
 
     var closeDate = moment(now).hour(16).minute(0).second(0);
 
     if (now.isBefore(openDate)) 
-        return {currentStatus: 'CLOSED', timeUntilNextStatus: durationToString(moment.duration(1, 'minutes'))};
+        return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(moment.duration(1, 'minutes'))};
     
     if (now.isAfter(closeDate)) {
         var nextOpenDate = nextWorkingDay(now).hour(9).minute(30).second(0);
         var timeToWait = moment.duration(nextOpenDate.diff(now, 'seconds'), 'seconds');
-        return {currentStatus: 'CLOSED', timeUntilNextStatus: durationToString(timeToWait)};
+        return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(timeToWait)};
     }
 
     return {currentStatus: 'OPEN'};
@@ -43,7 +43,7 @@ function durationToString(duration) {
 
 //set the date we're counting down to
 var utcToEsternTimeOffsetHours = 4;
-var targetDate = new Date(Date.UTC(2014, 10-1, 20, 16 + utcToEsternTimeOffsetHours, 00)).getTime();
+var targetDate = new Date(Date.UTC(2014, 10-1, 21, 09 + utcToEsternTimeOffsetHours, 30)).getTime();
 
 function countdownMessage(now) {
     // find the amount of "seconds" between now and target
@@ -65,6 +65,7 @@ function countdownMessage(now) {
 function myTimer() {
     var status = nasdaqStatus();
     $('#status').html(status.currentStatus);
+    $('#nextStatus').html(status.nextStatus);
     var now = new Date().getTime();
     $('#timeUntilNextStatus').html(countdownMessage(now));
 }
