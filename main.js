@@ -52,10 +52,9 @@ function durationToString(duration) {
 var utcToEsternTimeOffsetHours = 4;
 var targetDate = new Date(Date.UTC(2014, 10-1, 20, 16 + utcToEsternTimeOffsetHours, 00)).getTime();
 
-function countdown() {
+function countdownMessage(now) {
     // find the amount of "seconds" between now and target
-    var currentDate = new Date().getTime();
-    var secondsLeft = (targetDate - currentDate) / 1000;
+    var secondsLeft = (targetDate - now) / 1000;
  
     // do some time calculations
     var days = parseInt(secondsLeft / 86400);
@@ -67,16 +66,14 @@ function countdown() {
     var minutes = parseInt(secondsLeft / 60);
     var seconds = parseInt(secondsLeft % 60);
      
-    $('#timeUntilNextStatus').html(days + "d " + hours + "h "
-    	    + minutes + "m " + seconds + "s");
+    return days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 }
 
 function myTimer() {
-    var time = (new Date()).toLocaleTimeString();
     var status = nasdaqStatus();
     $('#status').html(status.currentStatus);
-    //$('#timeUntilNextStatus').html(status.timeUntilNextStatus);
-    countdown()
+    var now = new Date().getTime();
+    $('#timeUntilNextStatus').html(countdownMessage(now));
 }
 
 setInterval(myTimer, 1000);
