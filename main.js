@@ -54,7 +54,7 @@ function myTimer() {
     var time = (new Date()).toLocaleTimeString();
     var status = nasdaqStatus();
     $('#status').html(status.currentStatus);
-    $('#timeUntilNextStatus').html(status.timeUntilNextStatus);
+    //$('#timeUntilNextStatus').html(status.timeUntilNextStatus);
 }
 
 myTimer();
@@ -88,7 +88,7 @@ setInterval(function () {
     seconds = parseInt(secondsLeft % 60);
      
     // format countdown string + set tag value
-    countdown.innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s";  
+    $('#timeUntilNextStatus').html(days + "d " + hours + "h "
+    	    + minutes + "m " + seconds + "s");
  
 }, 1000);
