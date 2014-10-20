@@ -22,8 +22,9 @@
     	text-align: center;
     }
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="http://momentjs.com/downloads/moment.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://momentjs.com/downloads/moment.min.js"></script>
+<script type="text/javascript" src="http://momentjs.com/downloads/moment-timezone-with-data-2010-2020.min.js"></script>
 </head>
 <body>
 	<script>
@@ -38,7 +39,7 @@
 	
 	<div class="alert"><span id="adblockingAlert"></span></div>
 	<div class="screenCenter">
-	    <p>NASDAQ is: OPEN
+	    <p>NASDAQ is: <span id="status">?</span>
 	
 	    </p>
 	    <p>Will be closed in <span id="timeUntilNextStatus">?</span>

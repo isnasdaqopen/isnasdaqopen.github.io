@@ -1,23 +1,16 @@
 function nasdaqStatus(currentDateISOString) {
-	// TODO: hardcoded offset 
-    // TODO: adjust for Daylight Saving
-    var nasdaqTimeOffset = "-05:00";
-
     if(typeof moment === 'undefined')
     	$('#adblockingAlert').html("Are you using some adblocking software? Try switching it off for this site.");
 
-    var now = moment(currentDateISOString).zone(nasdaqTimeOffset);
-    console.log(now.format());
+    var now = moment(currentDateISOString).tz('America/New_York');
 
     var closestBusinessDay = moment(now);
     if (!isWorkingDay(now)) 
         return {currentStatus: 'CLOSED'};
 
     var openDate = moment(now).hour(9).minute(30).second(0);
-    console.log(openDate.format());
 
     var closeDate = moment(now).hour(16).minute(0).second(0);
-    console.log(closeDate.format());
 
     if (now.isBefore(openDate)) 
         return {currentStatus: 'CLOSED', timeUntilNextStatus: durationToString(moment.duration(1, 'minutes'))};
@@ -45,7 +38,7 @@ function nextWorkingDay(now) {
 }
 
 function durationToString(duration) {
-    return duration.hours() + ' hours ' + duration.minutes() + ' minutes';
+    return duration.hours() + ' hours ' + duration.minutes() + ' minutes ' + duration.seconds() + ' seconds';
 }
 
 //set the date we're counting down to
