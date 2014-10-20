@@ -14,10 +14,13 @@
 	    right: 0;
 	    margin: auto;
 	}
-	.jasmine_reporter {
-	    #position: absolute;
-	    #bottom: 0;
-	}
+	.alert {
+	    color: red;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width: 70%;
+    	text-align: center;
+    }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="http://momentjs.com/downloads/moment.js"></script>
@@ -33,6 +36,7 @@
 		  ga('send', 'pageview');
 	</script>
 	
+	<div class="alert"><span id="adblockingAlert"></span></div>
 	<div class="screenCenter">
 	    <p>NASDAQ is: <span id="status">?</span>
 	

@@ -3,6 +3,9 @@ function nasdaqStatus(currentDateISOString) {
     // TODO: adjust for Daylight Saving
     var nasdaqTimeOffset = "-05:00";
 
+    if(typeof moment === 'undefined')
+    	$('#adblockingAlert').html("Are you using some adblocking software? Try switching it off for this site.");
+
     var now = moment(currentDateISOString).zone(nasdaqTimeOffset);
     console.log(now.format());
 
