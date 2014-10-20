@@ -31,9 +31,9 @@ function isWorkingDay(now) {
 }
 
 function nextWorkingDay(now) {
-    var candidate = moment(now).add('days', 1);
+    var candidate = moment(now).add(1, 'days');
     while(!isWorkingDay(candidate))
-        candidate = candidate.add('days', 1);
+        candidate = candidate.add(1, 'days');
     return candidate;
 }
 
