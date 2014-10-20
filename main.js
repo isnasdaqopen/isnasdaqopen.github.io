@@ -21,7 +21,7 @@ function nasdaqStatus(currentDateISOString) {
         return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(timeToWait)};
     }
 
-    return {currentStatus: 'OPEN'};
+    return {currentStatus: 'OPEN', nextStatus: 'CLOSED'};
 }
 
 function isWorkingDay(now) {
