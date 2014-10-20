@@ -48,16 +48,6 @@ function durationToString(duration) {
     return duration.hours() + ' hours ' + duration.minutes() + ' minutes';
 }
 
-//setInterval(function(){ myTimer() }, 1000);
-
-function myTimer() {
-    var time = (new Date()).toLocaleTimeString();
-    var status = nasdaqStatus();
-    $('#status').html(status.currentStatus);
-    //$('#timeUntilNextStatus').html(status.timeUntilNextStatus);
-    countdown()
-}
-
 //set the date we're counting down to
 var utcToEsternTimeOffsetHours = 4;
 var targetDate = new Date(Date.UTC(2014, 10-1, 20, 16 + utcToEsternTimeOffsetHours, 00)).getTime();
@@ -79,6 +69,14 @@ function countdown() {
      
     $('#timeUntilNextStatus').html(days + "d " + hours + "h "
     	    + minutes + "m " + seconds + "s");
+}
+
+function myTimer() {
+    var time = (new Date()).toLocaleTimeString();
+    var status = nasdaqStatus();
+    $('#status').html(status.currentStatus);
+    //$('#timeUntilNextStatus').html(status.timeUntilNextStatus);
+    countdown()
 }
 
 setInterval(myTimer, 1000);
