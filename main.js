@@ -61,7 +61,8 @@ myTimer();
 
 
 //set the date we're counting down to
-var targetDate = new Date(Date.UTC(2014, 10-1, 20, 13, 30)).getTime();
+var utcToEsternTimeOffsetHours = 4;
+var targetDate = new Date(Date.UTC(2014, 10-1, 20, 16 + utcToEsternTimeOffsetHours, 00)).getTime();
  
 // variables for time units
 var days, hours, minutes, seconds;
