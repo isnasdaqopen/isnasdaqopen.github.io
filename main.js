@@ -28,9 +28,23 @@ function nasdaqStatus(currentDateISOString) {
 }
 
 function isWorkingDay(now) {
+	if (isHoliday(now)) return false;
     var SUNDAY = 0;
     var SATURDAY = 6;
     return !(now.day() == SUNDAY || now.day() == SATURDAY);
+}
+
+var holidays = ['2014-11-27'];
+
+function isHoliday(now) {
+	for (var i = 0; i < holidays.length; i++) {
+		var holiday = moment.tz(holidays[i], "America/New_York"); 
+		if (now.isSame(holiday, 'day')) {
+			console.log(now);
+			return true;
+		} 
+	}
+	return false;
 }
 
 function nextWorkingDay(now) {
@@ -51,4 +65,3 @@ function myTimer() {
     $('#timeUntilNextStatus').html(status.timeUntilNextStatus);
 }
 
-setInterval(myTimer, 1000);
