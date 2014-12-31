@@ -17,6 +17,8 @@ function nasdaqStatus(currentDateISOString) {
     } 
     
     var closeDate = moment(now).hour(16).minute(0).second(0);
+    // 24.12:
+    //var closeDate = moment(now).hour(13).minute(0).second(0);
     if (now.isAfter(closeDate)) {
         var nextOpenDate = nextWorkingDay(now).hour(9).minute(30).second(0);
         var timeToWait = moment.duration(nextOpenDate.diff(now, 'seconds'), 'seconds');
@@ -34,7 +36,7 @@ function isWorkingDay(now) {
     return !(now.day() == SUNDAY || now.day() == SATURDAY);
 }
 
-var holidays = ['2014-11-27'];
+var holidays = ['2014-11-27', '2015-01-01', '2015-01-19', '2015-02-16', '2015-04-03', '2015-05-25', '2015-07-03', '2015-09-07', '2015-11-26', '2015-12-25'];
 
 function isHoliday(now) {
 	for (var i = 0; i < holidays.length; i++) {
