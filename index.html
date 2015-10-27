@@ -43,6 +43,15 @@
 		  ga('create', 'UA-19459847-2', 'auto');
 		  ga('send', 'pageview');
 	</script>
+    
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 	
 	<div class="alert"><span id="adblockingAlert"></span></div>
 	<div class="screenCenter">
@@ -52,7 +61,12 @@
 	    <p>Will be <span id="nextStatus">?</span> in <span id="timeUntilNextStatus">?</span>
 	
 	    </p>
+        
+        <br/><br/>
+
+        <div class="fb-like" data-href="http://www.isnasdaqopen.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 	</div>
+    
 	<script type="text/javascript" src="main.js"></script>
 	<script>
 		setInterval(myTimer, 1000);
