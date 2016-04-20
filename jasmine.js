@@ -73,15 +73,15 @@ describe("Timezone: EET, summer time", function () {
 
 describe("Holidays", function () {
     it("Before Thanksgiving 09:30", function () {
-        var result = nasdaqStatus('2014-11-26T09:30:00-05:00');
+        var result = nasdaqStatus('2016-11-23T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 6h 30m 0s'});
     });
     it("Before Thanksgiving 16:01", function () {
-        var result = nasdaqStatus('2014-11-26T16:01:00-05:00');
+        var result = nasdaqStatus('2016-11-23T16:01:00-05:00');
         expect(result).toEqual({currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: '1d 17h 29m 0s'});
     });
     it("Thanksgiving 09:30", function () {
-        var result = nasdaqStatus('2014-11-27T09:30:00-05:00');
+        var result = nasdaqStatus('2016-11-24T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: '1d 0h 0m 0s'});
     });
 });
