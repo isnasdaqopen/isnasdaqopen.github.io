@@ -36,7 +36,7 @@ function isWorkingDay(now) {
     return !(now.day() == SUNDAY || now.day() == SATURDAY);
 }
 
-var holidays = ['2016-01-01', '2016-01-18', '2016-02-15', '2016-03-25', '2016-05-30', '2016-01-01', '2016-07-04', '2016-09-05', '2016-11-24', '2016-12-26'];
+var holidays = ['2017-04-14'];
 
 function isHoliday(now) {
 	for (var i = 0; i < holidays.length; i++) {
