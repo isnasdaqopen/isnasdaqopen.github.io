@@ -16,11 +16,9 @@ function nasdaqStatus(currentDateISOString) {
         return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(timeToWait)};
     } 
     
-    //var closeDate = moment(now).hour(16).minute(0).second(0);
-    //TODO: if (now.date() === 24 && now.month() = 11 - 1) || (now.date() === 3 && now.month() = 7 - 1) 
-    //TODO: unit test
+    var closeDate = moment(now).hour(16).minute(0).second(0);
     // Early close 24.11 and 03.07:
-    var closeDate = moment(now).hour(13).minute(0).second(0);
+    //var closeDate = moment(now).hour(13).minute(0).second(0);
     if (now.isAfter(closeDate)) {
         var nextOpenDate = nextWorkingDay(now).hour(9).minute(30).second(0);
         var timeToWait = moment.duration(nextOpenDate.diff(now, 'seconds'), 'seconds');
