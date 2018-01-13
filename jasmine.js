@@ -84,5 +84,9 @@ describe("Holidays", function () {
         var result = nasdaqStatus('2016-11-24T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: '1d 0h 0m 0s'});
     });
+    it("Saturday 09:30, Martin Luther on Monday", function () {
+        var result = nasdaqStatus('2018-01-13T09:30:00-05:00');
+        expect(result).toEqual({currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: '3d 0h 0m 0s'});
+    });
 });
 
