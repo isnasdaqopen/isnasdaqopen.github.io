@@ -1,3 +1,13 @@
+var holidays = [
+	'2016-01-01', '2016-01-18', '2016-02-15', '2016-03-25', '2016-05-30', '2016-07-04', '2016-09-05', '2016-11-24', '2016-12-26',
+	'2017-01-02', '2017-01-16', '2017-02-20', '2017-04-14', '2017-05-29', '2017-07-04', '2017-09-04', '2017-11-23', '2017-12-25',
+	'2018-01-01', '2018-01-15', '2018-02-19', '2018-03-30', '2018-05-28', '2018-07-04', '2018-09-03', '2018-11-22', '2018-12-25'
+];
+
+var earlyCloseDates = [
+	'2018-07-03', '2018-11-23', '2018-12-24'
+];
+
 function nasdaqStatus(currentDateISOString) {
     if(typeof moment === 'undefined')
     	$('#adblockingAlert').html("Are you using some adblocking software? Try switching it off for this site.");
@@ -35,11 +45,6 @@ function isWorkingDay(now) {
     return !(now.day() == SUNDAY || now.day() == SATURDAY);
 }
 
-var holidays = [
-	'2016-01-01', '2016-01-18', '2016-02-15', '2016-03-25', '2016-05-30', '2016-07-04', '2016-09-05', '2016-11-24', '2016-12-26',
-	'2017-01-02', '2017-01-16', '2017-02-20', '2017-04-14', '2017-05-29', '2017-07-04', '2017-09-04', '2017-11-23', '2017-12-25',
-	'2018-01-01', '2018-01-15', '2018-02-19', '2018-03-30', '2018-05-28', '2018-07-04', '2018-09-03', '2018-11-22', '2018-12-25'];
-
 function isHoliday(now) {
 	for (var i = 0; i < holidays.length; i++) {
 		var holiday = moment.tz(holidays[i], "America/New_York"); 
@@ -49,10 +54,6 @@ function isHoliday(now) {
 	}
 	return false;
 }
-
-var earlyCloseDates = [
-	'2018-07-03', '2018-11-23', '2018-12-24'
-];
 
 function isEarlyClose(now) {
 	for (var i = 0; i < earlyCloseDates.length; i++) {
