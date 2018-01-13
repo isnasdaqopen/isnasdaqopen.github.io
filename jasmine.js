@@ -90,3 +90,18 @@ describe("Holidays", function () {
     });
 });
 
+describe("Early Close", function () {
+    it("July 3, 09:30", function () {
+        var result = nasdaqStatus('2018-07-03T09:30:00-04:00');
+        expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 3h 30m 0s'});
+    });
+    it("November 23, 09:30", function () {
+        var result = nasdaqStatus('2018-11-23T09:30:00-05:00');
+        expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 3h 30m 0s'});
+    });
+    it("December 24, 09:30", function () {
+        var result = nasdaqStatus('2018-12-24T09:30:00-05:00');
+        expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 3h 30m 0s'});
+    });
+});
+

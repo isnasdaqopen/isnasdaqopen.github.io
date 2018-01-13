@@ -16,9 +16,8 @@ function nasdaqStatus(currentDateISOString) {
         return {currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: durationToString(timeToWait)};
     } 
     
-    var closeDate = moment(now).hour(16).minute(0).second(0);
-    // Early close 24.11 and 03.07:
-    //var closeDate = moment(now).hour(13).minute(0).second(0);
+    var closingHour = isEarlyClose(now)? 13 : 16;
+    var closeDate = moment(now).hour(closingHour).minute(0).second(0);
     if (now.isAfter(closeDate)) {
         var nextOpenDate = nextWorkingDay(now).hour(9).minute(30).second(0);
         var timeToWait = moment.duration(nextOpenDate.diff(now, 'seconds'), 'seconds');
@@ -45,7 +44,20 @@ function isHoliday(now) {
 	for (var i = 0; i < holidays.length; i++) {
 		var holiday = moment.tz(holidays[i], "America/New_York"); 
 		if (now.isSame(holiday, 'day')) {
-			console.log(now);
+			return true;
+		} 
+	}
+	return false;
+}
+
+var earlyCloseDates = [
+	'2018-07-03', '2018-11-23', '2018-12-24'
+];
+
+function isEarlyClose(now) {
+	for (var i = 0; i < earlyCloseDates.length; i++) {
+		var earlyCloseDate = moment.tz(earlyCloseDates[i], "America/New_York"); 
+		if (now.isSame(earlyCloseDate, 'day')) {
 			return true;
 		} 
 	}
