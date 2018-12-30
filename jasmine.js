@@ -73,34 +73,34 @@ describe("Timezone: EET, summer time", function () {
 
 describe("Holidays", function () {
     it("Before Thanksgiving 09:30", function () {
-        var result = nasdaqStatus('2016-11-23T09:30:00-05:00');
+        var result = nasdaqStatus('2019-11-27T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 6h 30m 0s'});
     });
     it("Before Thanksgiving 16:01", function () {
-        var result = nasdaqStatus('2016-11-23T16:01:00-05:00');
+        var result = nasdaqStatus('2019-11-27T16:01:00-05:00');
         expect(result).toEqual({currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: '1d 17h 29m 0s'});
     });
     it("Thanksgiving 09:30", function () {
-        var result = nasdaqStatus('2016-11-24T09:30:00-05:00');
+        var result = nasdaqStatus('2019-11-28T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: '1d 0h 0m 0s'});
     });
     it("Saturday 09:30, Martin Luther on Monday", function () {
-        var result = nasdaqStatus('2018-01-13T09:30:00-05:00');
+        var result = nasdaqStatus('2019-01-19T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'CLOSED', nextStatus: 'OPEN', timeUntilNextStatus: '3d 0h 0m 0s'});
     });
 });
 
 describe("Early Close", function () {
     it("July 3, 09:30", function () {
-        var result = nasdaqStatus('2018-07-03T09:30:00-04:00');
+        var result = nasdaqStatus('2019-07-03T09:30:00-04:00');
         expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 3h 30m 0s'});
     });
-    it("November 23, 09:30", function () {
-        var result = nasdaqStatus('2018-11-23T09:30:00-05:00');
+    it("November 29, 09:30", function () {
+        var result = nasdaqStatus('2019-11-29T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 3h 30m 0s'});
     });
     it("December 24, 09:30", function () {
-        var result = nasdaqStatus('2018-12-24T09:30:00-05:00');
+        var result = nasdaqStatus('2019-12-24T09:30:00-05:00');
         expect(result).toEqual({currentStatus: 'OPEN', nextStatus: 'CLOSED', timeUntilNextStatus: '0d 3h 30m 0s'});
     });
 });
