@@ -26,8 +26,13 @@ header {
 
 #status {
     font-size: 40px;
-    color: green; /* Use red for closed */
     margin-bottom: 0;
+}
+#status.open {
+    color: green;
+}
+#status.closed {
+    color: red;
 }
 
 #countdownTimer {
