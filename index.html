@@ -27,18 +27,20 @@
     <div id="fb-root"></div>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v18.0" nonce="eYsZEvXI"></script>
 
-	<div class="alert"><span id="adblockingAlert"></span></div>
-	<div class="screenCenter">
-	    <p>NASDAQ is: <span id="status">?</span>
+	<header>
+        <h1>NASDAQ Market Status</h1>
+    </header>
 
-	    </p>
-	    <p>Will be <span id="nextStatus">?</span> in <span id="timeUntilNextStatus">?</span>
-
-	    </p>
-
-        <br/><br/>
-
-        <div class="fb-like" data-href="https://www.isnasdaqopen.com/" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+    <main>
+        <div id="statusBlock">
+            <p id="status">?</p>
+            <p id="countdownTimer">Will be <span id="nextStatus">?</span> in <span id="timeUntilNextStatus">?</span></p>
+        </div>
+        <section id="additionalInfo">
+            <!-- Additional sections like news feed, calendar, FAQs can be added here -->
+			<div class="fb-like" data-href="https://www.isnasdaqopen.com/" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+        </section>
+    </main>
 
 	<script type="text/javascript" src="main.js"></script>
 	<script>

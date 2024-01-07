@@ -1,16 +1,50 @@
 body {
-    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    background-color: #e9ecef;
 }
-div.screenCenter {
-    width: 250px;
-    height: 50px;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
+
+#statusBlock {
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+}
+
+#status {
+    font-size: 40px;
+    color: green; /* Use red for closed */
+    margin-bottom: 0;
+}
+
+#countdownTimer {
+    font-size: 24px;
+    color: #666;
+}
+
+@media only screen and (max-width: 600px) {
+    #status {
+        font-size: 30px;
+    }
+
+    #countdownTimer {
+        font-size: 18px;
+    }
+}
+
 .alert {
     color: red;
     margin-left: auto;
