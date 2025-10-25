@@ -92,8 +92,8 @@ function durationToString(duration) {
 
 function myTimer() {
     var status = nasdaqStatus();
-    $('#status').html(status.currentStatus);
-    $('#status').addClass(status.currentStatus.toLowerCase());
+    var $s = $('#status');
+    $s.removeClass('open closed').addClass(status.currentStatus.toLowerCase()).html(status.currentStatus);
     $('#nextStatus').html(status.nextStatus);
     $('#timeUntilNextStatus').html(status.timeUntilNextStatus);
 }
